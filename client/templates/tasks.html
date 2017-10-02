@@ -14,6 +14,7 @@
                 >
         <h2 ng-if="!task.checked">{{ task.title}}</h2>
         <strike ng-if="task.checked"> <h2>{{ task.title}}</h2></strike>
+        <br>
         <span class="last-message-timestamp">{{ task.createdAt | calendar}}</span>
 
         <ion-option-button class="button-assertive" ng-click="tasks.removeTask(task)">

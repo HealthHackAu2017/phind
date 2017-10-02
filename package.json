@@ -1,5 +1,5 @@
 {
-  "name": "whatsapp",
+  "name": "Study Buddy",
   "private": true,
   "scripts": {
     "start": "meteor run"

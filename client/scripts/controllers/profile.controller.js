@@ -8,8 +8,14 @@ export default class ProfileCtrl extends Controller {
  
     const profile = this.currentUser && this.currentUser.profile;
     this.name = profile ? profile.name : '';
+    this.division = profile ? profile.division : '';
+    this.school = profile ? profile.school : '';
+    console.log(this)
   }
-  
+
+  skip(){
+    this.$state.go('tab.tasks');
+  }
   updatePicture () {
     MeteorCameraUI.getPicture({ width: 60, height: 60 }, (err, data) => {
       if (err) return this.handleError(err);
@@ -30,10 +36,34 @@ export default class ProfileCtrl extends Controller {
  
     this.callMethod('updateName', this.name, (err) => {
       if (err) return this.handleError(err);
-      this.$state.go('tab.chats');
+      //this.$state.go('tab.chats');
+    });
+  }
+
+  updateDiv() {
+    if (_.isEmpty(this.division)) return;
+ 
+    this.callMethod('updateDiv', this.division, (err) => {
+      if (err) return this.handleError(err);
+      //this.$state.go('tab.chats');
     });
   }
  
+  updateSchool() {
+    if (_.isEmpty(this.school)) return;
+ 
+    this.callMethod('updateSchool', this.school, (err) => {
+      if (err) return this.handleError(err);
+      //this.$state.go('tab.chats');
+    });
+  }
+  next(){
+     this.updateName();
+     this.updateDiv();
+     this.updateSchool();
+     this.$state.go('tab.chats');
+  }
+
   handleError(err) {
     if (err.error == 'cancel') return;
     this.$log.error('Profile save error ', err);

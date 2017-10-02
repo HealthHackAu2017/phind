@@ -1,0 +1,25 @@
+<ion-view view-title="Today">
+  <ion-nav-buttons side="left">
+    <button ng-click="tasks.showChatModal()" class="button button-clear button-positive button-icon ion-ios-chatbubble-outline"></button>
+  </ion-nav-buttons>
+  <ion-nav-buttons side="right">
+    <button ng-click="tasks.newTaskModal()" class="button button-clear button-positive button-icon ion-ios-plus-empty"></button>
+  </ion-nav-buttons>
+  <ion-content>
+    <ion-list>
+      <ion-item ng-repeat="task in tasks.data | orderBy:'task.createdAt'"
+                class="item-chat item-remove-animate item-text-wrap"
+                
+                on-swipe-right="tasks.setChecked(task)"
+                >
+        <h2 ng-if="!task.checked">{{ task.title}}</h2>
+        <strike ng-if="task.checked"> <h2>{{ task.title}}</h2></strike>
+        <span class="last-message-timestamp">{{ task.createdAt | calendar}}</span>
+
+        <ion-option-button class="button-assertive" ng-click="tasks.removeTask(task)">
+          Delete
+        </ion-option-button>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-view>

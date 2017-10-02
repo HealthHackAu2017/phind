@@ -1,0 +1,21 @@
+<ion-modal-view ng-controller="NewTaskCtrl as task">
+  <ion-header-bar>
+    <h1 class="title">New Task</h1>
+    <div class="buttons">
+      <button class="button button-clear button-positive" ng-click="task.hideNewTaskModal()">Close</button>
+    </div>
+  </ion-header-bar>
+ 
+  <ion-content>
+    <div class="list">
+      <label class="item item-input">
+         <textarea ng-model="task.newTask" rows="10" placeholder="Enter Your Task"></textarea>
+      </label>
+      
+      <button ng-click="task.addTask(task.newTask)" class="button button-block button-positive">
+        Create
+      </button>
+
+    </div>
+  </ion-content>
+</ion-modal-view>

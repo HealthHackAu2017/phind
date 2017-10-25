@@ -61,7 +61,7 @@ export default class ProfileCtrl extends Controller {
      this.updateName();
      this.updateDiv();
      this.updateSchool();
-     this.$state.go('tab.chats');
+     this.$state.go('tab.tasks');
   }
 
   handleError(err) {

@@ -1,18 +1,21 @@
 <ion-modal-view ng-controller="NewTaskCtrl as task">
   <ion-header-bar>
-    <h1 class="title">New Task</h1>
+    <h1 class="title">So, what's the plan ?</h1>
     <div class="buttons">
       <button class="button button-clear button-positive" ng-click="task.hideNewTaskModal()">Close</button>
     </div>
   </ion-header-bar>
  
   <ion-content>
+    <ion-list>
+      <ion-radio ng-model="task.newTask" ng-value="'Having Drinks'">Having Drinks</ion-radio>
+      <ion-radio ng-model="task.newTask" ng-value="'Going for Movie'">Going for Movie</ion-radio>
+      <ion-radio ng-model="task.newTask" ng-value="'Brainstorming'">Brainstorming</ion-radio>
+      <ion-radio ng-model="task.newTask" ng-value="'Going for a hike'">Let's go on a hike</ion-radio>
+    </ion-list>
     <div class="list">
-      <label class="item item-input">
-         <textarea ng-model="task.newTask" rows="10" placeholder="Enter Your Task"></textarea>
-      </label>
       
-      <button ng-click="task.addTask(task.newTask)" class="button button-block button-positive">
+      <button ng-click="task.addTask(task.newTask)" class="button start button-positive">
         Create
       </button>
 

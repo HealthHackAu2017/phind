@@ -1,6 +1,6 @@
 <ion-view title="Profile">
   <ion-nav-buttons side="right">
-    <button ng-click="profile.updateName()" ng-disabled="!profile.name || profile.name.length === 0" class="button button-clear button-positive">Done</button>
+    <button ng-click="profile.next()" ng-disabled="!profile.name || profile.name.length === 0" class="button button-clear button-positive">Save</button>
   </ion-nav-buttons>
  
   <ion-content class="profile">
@@ -22,6 +22,27 @@
       <label class="item item-input">
         <input ng-model="profile.name" on-return="profile.updateName()" type="text" placeholder="Your name">
       </label>
+      <label class="item item-input item-select">
+        <div class="input-label">
+          School
+        </div>
+        <select ng-model="profile.school"  ng-change="profile.updateSchool()">
+          <option>UQ</option>
+          <option selected>Griffith</option>
+          <option>QUT</option>
+        </select>
+      </label>
+      <label class="item item-input item-select">
+        <div class="input-label">
+          Class
+        </div>
+        <select ng-model="profile.division" ng-change="profile.updateDiv()">
+          <option>Psychology</option>
+          <option selected>Engineering</option>
+          <option>Medicine</option>
+        </select>
+      </label>
+      <button ng-click="profile.skip()" ng-disabled="!profile.name || profile.name.length === 0" class="button button-clear button-stable button-block">Skip</button>
     </div>
   </ion-content>
 </ion-view>

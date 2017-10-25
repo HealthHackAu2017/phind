@@ -1,10 +1,17 @@
-<ion-view title="Your phone number">
+<ion-view title="Login">
   <ion-nav-buttons side="right">
     <button ng-click="logger.login()" ng-disabled="!logger.phone || logger.phone.length === 0" class="button button-clear button-positive">Done</button>
   </ion-nav-buttons>
   <ion-content class="login">
+    <div class="list card">
+    <div class="item item-image">
+      <img src="/front.jpg">
+    </div>
+  </div>
     <div class="text-center instructions">
-      Please confirm your country code and enter your phone number
+      Welcome to Study Buddy
+      <br>
+      Enter your mobile number with country code
     </div>
     <div class="list">
       <label class="item item-input">

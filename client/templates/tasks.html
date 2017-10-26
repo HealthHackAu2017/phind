@@ -12,13 +12,14 @@
     <ion-list>
       <ion-item ng-if="!task.checked" ng-repeat="task in tasks.data | orderBy:'task.createdAt'"
                 class="item-chat item-remove-animate item-text-wrap item-icon-right"
-                
+                href="" ng-click="tasks.newgroupChat(task._id)"
                 on-swipe-right="tasks.setChecked(task)"
                 >
-        <h2>{{ task.title}}</h2>
+        <h2>{{task.title}}</h2>
         <i class="icon ion-chevron-right icon-accessory"></i>
+        <span class="schedule-message-timestamp">{{task.scheduledAt  | amDateFormat: ' MM/DD/YYYY HH:mm'}}</span>
         <br>
-        <span class="last-message-timestamp">{{ task.createdAt | calendar}}</span>
+        <span class="last-message-timestamp">{{task.createdAt | calendar}}</span>
         
         <ion-option-button class="button-assertive" ng-click="tasks.removeTask(task)">
           Ignore

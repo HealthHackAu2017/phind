@@ -13,9 +13,26 @@
       <ion-radio ng-model="task.newTask" ng-value="'Brainstorming'">Brainstorming</ion-radio>
       <ion-radio ng-model="task.newTask" ng-value="'Going for a hike'">Let's go on a hike</ion-radio>
     </ion-list>
-    <div class="list">
-      
-      <button ng-click="task.addTask(task.newTask)" class="button start button-positive">
+
+    <div ng-if="task.newTask">
+      <ion-item style="text-align:center;">
+      <ion-label>Select Date and Time</ion-label>
+      <input type="datetime-local" ng-model="task.newDateTime">
+      </ion-item>
+
+      <!--<label>Date</label>
+      Selected Date: 2017-10-10 10:50 AM
+      <div class="dropdown">
+          <a  class="dropdown-toggle" id="dropdown1" role="button" data-toggle="dropdown" data-target="#" href="#">Click here to show calendar</a>
+          <ul class="dropdown-menu" role="menu">
+              <datetimepicker data-ng-model="data.dateDropDownLink" data-datetimepicker-config="{ dropdownSelector: '#dropdown1' }"/>
+          </ul>
+      </div>-->
+    </div>
+
+
+    <div class="list" ng-if="task.newDateTime">
+      <button ng-click="task.addTask(task.newTask, task.newDateTime)" class="button start button-positive">
         Create
       </button>
 

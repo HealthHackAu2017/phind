@@ -9,7 +9,7 @@ export default class ChatsCtrl extends Controller {
     super(...arguments);
  	this.helpers({
       data() {
-        return Chats.find();
+        return Chats.find({userIds: this.currentUser._id}); 
       }
     });
   }

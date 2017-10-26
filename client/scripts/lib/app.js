@@ -5,6 +5,7 @@ import 'angular-moment';
 import 'angular-sanitize';
 import 'angular-ui-router';
 import 'ionic-scripts';
+import 'angular-bootstrap-datetimepicker';
 import Angular from 'angular';
 import Loader from 'angular-ecmascript/module-loader'
 import { Meteor } from 'meteor/meteor';
@@ -24,6 +25,7 @@ import NewChatCtrl from '../controllers/new-chat.controller';
 import NewTaskCtrl from '../controllers/new-task.controller';
 import CalendarFilter from '../filters/calendar.filter'
 import ChatNameFilter from '../filters/chat-name.filter';
+import MessageNameFilter from '../filters/message-name.filter';
 import Routes from '../routes';
 
 const App = "Whatsapp";
@@ -32,7 +34,8 @@ Angular.module(App, [
 	'angular-meteor',
 	'angular-meteor.auth',
 	'angularMoment',
-	'ionic'
+	'ionic',
+	'ui.bootstrap.datetimepicker'
 	]);
 
 new Loader(App)
@@ -44,6 +47,7 @@ new Loader(App)
 	.load(NewTaskCtrl)
 	.load(SettingsCtrl)
 	.load(LoginCtrl)
+	.load(MessageNameFilter)
 	.load(ChatNameFilter)
 	.load(ChatPictureFilter)
 	.load(NewChatService)

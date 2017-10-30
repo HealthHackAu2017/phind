@@ -51,18 +51,18 @@ class RoutesConfig extends Config {
             controller: 'ChatCtrl as chat'
           }
         }
-      })
-      .state('login', {
+    })
+    .state('login', {
         url: '/login',
         templateUrl: loginTemplateUrl,
         controller: 'LoginCtrl as logger'
-      })
-      .state('confirmation', {
+    })
+    .state('confirmation', {
         url: '/confirmation/:phone',
         templateUrl: confirmationTemplateUrl,
         controller: 'ConfirmationCtrl as confirmation'
-      })
-      .state('profile', {
+    })
+    .state('profile', {
         url: '/profile',
         templateUrl: profileTemplateUrl,
         controller: 'ProfileCtrl as profile',
@@ -89,7 +89,6 @@ class RoutesConfig extends Config {
         }
       });
     this.$urlRouterProvider.otherwise('tab/tasks');
-
   }
   isAuthorized($auth) {
     return $auth.awaitUser();

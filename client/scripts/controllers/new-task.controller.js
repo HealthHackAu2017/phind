@@ -7,12 +7,11 @@ export default class NewTaskCtrl extends Controller {
     super(...arguments);
     console.log("here");
     this.subscribe('tasks');
-    
   }
  
-  addTask(text) {
+  addTask(text, date) {
 
-    this.callMethod('insertTask', text, (err, taskId) => {
+    this.callMethod('insertTask', text, date, (err, taskId) => {
       this.hideNewTaskModal();
       if (err) return this.handleError(err);
     });
@@ -21,8 +20,6 @@ export default class NewTaskCtrl extends Controller {
   hideNewTaskModal() {
     this.NewTask.hideModal();
   }
- 
- 
   handleError(err) {
     this.$log.error('New task creation error ', err);
  

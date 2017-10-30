@@ -16,7 +16,7 @@ export default class NewChatCtrl extends Controller {
   }
  
   newChat(userId) {
-    let chat = Chats.findOne({ userIds: { $all: [this.currentUserId, userId] } });
+    let chat = Chats.findOne({ userIds: { $all: [this.currentUserId, userId]}, taskId : {$exists : false}});
  
     if (chat) {
       this.hideNewChatModal();

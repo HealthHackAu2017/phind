@@ -1,5 +1,5 @@
 import { Meteor } from 'meteor/meteor';
-import { Chats, Messages, Tasks } from '../lib/collections';
+import { Chats, Messages, Tasks} from '../lib/collections';
  
 Meteor.publish('users', function() {
   return Meteor.users.find({}, { fields: { profile: 1 } });
@@ -11,7 +11,7 @@ Meteor.publishComposite('chats', function() {
  
   return {
     find() {
-      return Chats.find({ userIds: this.userId });
+      return Chats.find({});
     },
     children: [
       {
@@ -36,7 +36,7 @@ Meteor.publishComposite('tasks', function() {
  
   return {
     find() {
-      return Tasks.find({ userId: this.userId });
+      return Tasks.find({});
     },
     children: [
       

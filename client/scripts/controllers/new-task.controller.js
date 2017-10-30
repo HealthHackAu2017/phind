@@ -7,6 +7,7 @@ export default class NewTaskCtrl extends Controller {
     super(...arguments);
     console.log("here");
     this.subscribe('tasks');
+    this.newDateTime = new Date();
   }
  
   addTask(text, date) {

@@ -1,6 +1,9 @@
-<ion-view title="{{ chat.data | chatName }}">
+<ion-view title="{{ chat.data | chatName }}" hide-back-button="true">
   <ion-nav-buttons side="right">
     <button class="button button-clear"><img class="header-picture" ng-src="{{ chat.data | chatPicture }}"></button>
+  </ion-nav-buttons>
+  <ion-nav-buttons side="left">
+   <a class="button icon-left ion-chevron-left button-clear" ng-href="#/tab/chats">Back</a>
   </ion-nav-buttons>
   <ion-content class="chat" delegate-handle="chatScroll">
 

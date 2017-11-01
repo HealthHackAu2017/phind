@@ -38,11 +38,7 @@ export default class TasksCtrl extends Controller {
         'Chat\'s task not exists');
     }
 
-    console.log(findtask._id)
-
     let chat = Chats.findOne({"taskId": findtask._id});
-
-    console.log(chat)
  
     if (chat) {
       var move = false

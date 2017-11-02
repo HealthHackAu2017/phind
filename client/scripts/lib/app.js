@@ -13,6 +13,7 @@ import { Meteor } from 'meteor/meteor';
 import ChatsCtrl from '../controllers/chats.controller';
 import TasksCtrl from '../controllers/tasks.controller';
 import ChatCtrl from '../controllers/chat.controller';
+import DiaryCtrl from '../controllers/diary.controller';
 import ConfirmationCtrl from '../controllers/confirmation.controller';
 import ProfileCtrl from '../controllers/profile.controller';
 import SettingsCtrl from '../controllers/settings.controller';
@@ -43,6 +44,7 @@ new Loader(App)
 	.load(TasksCtrl)
 	.load(ProfileCtrl)
 	.load(ChatCtrl)
+	.load(DiaryCtrl)
 	.load(NewChatCtrl)
 	.load(NewTaskCtrl)
 	.load(SettingsCtrl)

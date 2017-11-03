@@ -10,6 +10,8 @@ import settingsTemplateUrl from '../templates/settings.html';
 import loginTemplateUrl from '../templates/login.html';
 import profileTemplateUrl from '../templates/profile.html';
 import tabsTemplateUrl from '../templates/tabs.html';
+import diaryTemplateUrl from '../templates/diary.html';
+import stressLevelTemplateUrl from '../templates/stresslevel';
  
 class RoutesConfig extends Config {
   constructor() {
@@ -30,6 +32,12 @@ class RoutesConfig extends Config {
           },
           tasks() {
             return Meteor.subscribe('tasks');
+          },
+          diaries() {
+            return Meteor.subscribe('diaries');
+          },
+          stresslevels() {
+            return Meteor.subscribe('stresslevels');
           }
         }
       })
@@ -76,6 +84,24 @@ class RoutesConfig extends Config {
           'tab-tasks': {
             templateUrl: tasksTemplateUrl,
             controller: 'TasksCtrl as tasks'
+          }
+        }
+    })
+    .state('tab.diary', {
+        url: '/diary',
+        views: {
+          'tab-tasks': {
+            templateUrl: diaryTemplateUrl,
+            controller: 'DiaryCtrl as diaries'
+          }
+        }
+    })
+    .state('tab.stresslevel', {
+        url: '/stresslevel',
+        views: {
+          'tab-tasks': {
+            templateUrl: stressLevelTemplateUrl,
+            controller: 'StressLevelCtrl as stresslevels'
           }
         }
     })

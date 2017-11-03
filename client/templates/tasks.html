@@ -2,13 +2,13 @@
   <ion-nav-buttons side="left">
     <a ng-href="#/tab/diary" class="button button-clear button-positive button-icon ion-ios-compose-outline"></a>
   </ion-nav-buttons>
-  <ion-nav-buttons side="right">
-    <button ng-click="tasks.showstressModal()" class="button button-clear button-positive button-icon ion-ios-plus-empty"></button>
+  <ion-nav-buttons side="right">  
+    <ion-badge ng-if="!tasks.stress" id="notifications-badge" color="danger"></ion-badge><a ng-href="#/tab/stresslevel" id="#notification-button" class="button button-clear button-positive button-icon ion-ios-plus-empty"></a>
   </ion-nav-buttons>
   <ion-content>
     <button class="start button button-positive" ng-click="tasks.newTaskModal()">
-  Let's Get Started
-</button>
+      Let's Get Started
+    </button>
     <ion-list>
       <ion-item ng-if="!task.checked" ng-repeat="task in tasks.data | orderBy:'task.createdAt'"
                 class="item-chat item-remove-animate item-text-wrap item-icon-right"

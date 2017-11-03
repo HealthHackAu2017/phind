@@ -1,5 +1,5 @@
 import { Meteor } from 'meteor/meteor';
-import { Chats, Messages, Tasks, Diaries} from '../lib/collections';
+import { Chats, Messages, Tasks, Diaries, Stresslevels} from '../lib/collections';
  
 Meteor.publish('users', function() {
   return Meteor.users.find({}, { fields: { profile: 1 } });
@@ -50,6 +50,19 @@ Meteor.publishComposite('diaries', function() {
   return {
     find() {
       return Diaries.find({userId : this.userId});
+    },
+    children: [
+      
+    ]
+  };
+});
+
+Meteor.publishComposite('stresslevels', function() {
+  if (!this.userId) return;
+ 
+  return {
+    find() {
+      return Stresslevels.find({userId : this.userId});
     },
     children: [
       

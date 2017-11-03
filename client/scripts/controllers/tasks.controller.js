@@ -1,9 +1,8 @@
 import Moment from 'moment';
-
 import { Controller } from 'angular-ecmascript/module-helpers';
 
 import { Tasks } from '../../../lib/collections';
-import { Chats } from '../../../lib/collections';
+import { Chats, Stresslevels } from '../../../lib/collections';
 
 export default class TasksCtrl extends Controller {
   constructor() {
@@ -11,6 +10,19 @@ export default class TasksCtrl extends Controller {
  	this.helpers({
       data() {
         return Tasks.find();
+      },
+      stress(){
+        var d = new Date();
+        d.setHours(0,0,0,0);
+        var end = new Date();
+        end.setHours(0,0,0,0);
+        end.setHours(24,0,0,0);
+        const stresslevel = Stresslevels.findOne({createdAt : {'$gte' : d, '$lt' : end}})
+        if (stresslevel){
+          return true
+        }else{
+          return false
+        }
       }
     });
   }
@@ -27,6 +39,22 @@ export default class TasksCtrl extends Controller {
       if (err) return this.handleError(err);
     });
   }
+
+  /*confirmgroupchat(taskID){
+    var myPopup = this.$ionicPopup.show({
+        title: 'Confirm?',
+        this:this,
+        buttons: [
+            { text: 'Cancel' }, {
+               text: '<b>Confirm</b>',
+               type: 'button-positive',
+               onTap: function(e) {
+                  newgroupChat(taskID)
+               }
+            }
+        ]
+      });
+  }*/
 
   newgroupChat(taskID) {
 
@@ -81,4 +109,4 @@ export default class TasksCtrl extends Controller {
 }
  
 TasksCtrl.$name = 'TasksCtrl';
-TasksCtrl.$inject = ['NewTask','$state'];
+TasksCtrl.$inject = ['NewTask','$state','$ionicPopup'];

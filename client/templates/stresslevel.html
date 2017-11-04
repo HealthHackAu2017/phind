@@ -1,0 +1,26 @@
+<ion-view view-title="Stress Level">
+  <ion-nav-buttons side="left">
+    <a class="button icon-left ion-chevron-left button-clear" ng-href="#/tab/tasks"></a>
+  </ion-nav-buttons>
+
+  <ion-content class="has-header">
+      <ion-list >
+            <!--<div class="item">
+              <div id="chart"></div>
+            </div>-->
+            <div class="list" style="background:#fff;padding:10px;">
+              <div class="item text-center">
+                <b>How is your stress today?</b>
+              </div>
+              <div class="item range range-positive">
+                <i class="icon ion-heart"></i>
+                  <input type="range" name="volume" min="0" max="100" on-tap="onTap($event,stresslevels.stress.value)" on-drag="onTap($event,stresslevels.stress.value)" ng-model="stresslevels.stress.value" ng-change="stresslevels.setvalue(stresslevels.stress.value)">
+                <i class="icon ion-heart-broken"></i>
+              </div>
+              <div class="item text-center">
+              {{stresslevels.stress.status}}
+              </div>
+            </div>
+         </ion-list>
+    </ion-content>
+</ion-view>

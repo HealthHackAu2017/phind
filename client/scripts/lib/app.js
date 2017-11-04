@@ -22,7 +22,7 @@ import LoginCtrl from '../controllers/login.controller';
 import NewChatService from '../services/new-chat.service';
 import NewTaskService from '../services/new-task.service';
 import ChatPictureFilter from '../filters/chat-picture.filter';
-import InputDirective from '../directives/input.directive'
+import InputDirective from '../directives/input.directive';
 import NewChatCtrl from '../controllers/new-chat.controller';
 import NewTaskCtrl from '../controllers/new-task.controller';
 import CalendarFilter from '../filters/calendar.filter'
@@ -37,8 +37,9 @@ Angular.module(App, [
 	'angular-meteor.auth',
 	'angularMoment',
 	'ionic',
-	'ui.bootstrap.datetimepicker'
-	]);
+	'ui.bootstrap.datetimepicker',
+
+	])
 
 new Loader(App)
 	.load(ChatsCtrl)

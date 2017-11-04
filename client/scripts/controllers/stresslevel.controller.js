@@ -20,10 +20,11 @@ export default class StressLevelCtrl extends Controller {
   }
 
   submitAnswer(value, text, id){
+    this.$state.go('tab.diary');
     //this.callMethod('submitAnswer', value, text, id);
     
   }
 }
  
 StressLevelCtrl.$name = 'StressLevelCtrl';
-StressLevelCtrl.$inject = ['$stateParams', '$timeout', '$log'];
+StressLevelCtrl.$inject = ['$stateParams', '$timeout', '$log', '$state'];

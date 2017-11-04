@@ -1,4 +1,4 @@
-<ion-view view-title="Stress Level">
+<ion-view view-title="Stress Level" hide-back-button="true">
   <ion-nav-buttons side="left">
     <a class="button icon-left ion-chevron-left button-clear" ng-href="#/tab/tasks"></a>
   </ion-nav-buttons>
@@ -10,15 +10,46 @@
             </div>-->
             <div class="list" style="background:#fff;padding:10px;">
               <div class="item text-center">
-                <b>How is your stress today?</b>
+               <b> {{stresslevels.questions[0].topic}}</b>
+    
               </div>
-              <div class="item range range-positive">
-                <i class="icon ion-heart"></i>
-                  <input type="range" name="volume" min="0" max="100" on-tap="onTap($event,stresslevels.stress.value)" on-drag="onTap($event,stresslevels.stress.value)" ng-model="stresslevels.stress.value" ng-change="stresslevels.setvalue(stresslevels.stress.value)">
-                <i class="icon ion-heart-broken"></i>
+              <div class="item item-text-wrap">
+                {{stresslevels.questions[0].structured_question}}
+
               </div>
-              <div class="item text-center">
-              {{stresslevels.stress.status}}
+              <div class="item range range-positive" ng-if="stresslevels.questions[0].input_method == 0">
+                <i class="icon ion-heart" ng-init="stresslevels.answer.value = 50" ng-class="{red: stresslevels.answer.value < 30, black: stresslevels.answer.value >= 30}"></i>
+                  <input type="range" name="volume" min="0" max="100" on-tap="onTap($event,stresslevels.answer.value)" on-drag="onTap($event,stresslevels.answer.value)" ng-model="stresslevels.answer.value">
+                <i class="icon ion-heart-broken" ng-class="{red: stresslevels.answer.value > 70, black: stresslevels.answer.value <= 70}"></i>
+              </div>
+              <li class="item item-toggle" ng-if="stresslevels.questions[0].input_method == 1">
+                <span ng-if="stresslevels.answer.binary == undefined">No</span>
+                 <span ng-if="stresslevels.answer.binary == true">Yes</span>
+                 <span ng-if="stresslevels.answer.binary == false">No</span>
+                 <label class="toggle toggle-assertive">
+                   <input type="checkbox" ng-init="stresslevels.answer.binary == false" ng-model="stresslevels.answer.binary">
+                   <div class="track">
+                     <div class="handle"></div>
+                   </div>
+                 </label>
+              </li>
+              <div class="item text-center" ng-if="stresslevels.answer.value < 30 && stresslevels.questions[0].input_method == 0">{{
+                stresslevels.questions[0].positive_end
+              }}</div>
+              <div class="item text-center" ng-if="stresslevels.answer.value >= 30 && stresslevels.answer.value <= 70 && stresslevels.questions[0].input_method == 0"">
+                Meh
+              </div>
+              <div class="item text-center" ng-if="stresslevels.answer.value > 70">{{
+                stresslevels.questions[0].negative_end
+              }}</div>
+              <div class="item item-text-wrap" >
+                  {{stresslevels.questions[0].follow_up_question}}
+              </div>
+              <label class="item item-input" >
+                <textarea placeholder="Answer" ng-model="stresslevels.answer.text" rows="4"></textarea>
+              </label>
+              <div class="item padding">
+                 <button class="button button-block button-balanced" ng-click="stresslevels.submitAnswer(stresslevels.answer.value, stresslevels.answer.text, stresslevels.questions[0]._id)">Submit</button>
               </div>
             </div>
          </ion-list>

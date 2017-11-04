@@ -56,40 +56,8 @@ export default class TasksCtrl extends Controller {
       });
   }*/
 
-  newgroupChat(taskID) {
-
-    check(taskID, String);
-    let findtask = Tasks.findOne(taskID);
- 
-    if (!findtask) {
-      throw new Meteor.Error('task-not-exists',
-        'Chat\'s task not exists');
-    }
-
-    let chat = Chats.findOne({"taskId": findtask._id});
- 
-    if (chat) {
-      var move = false
-      for (var i = 0; i < chat.userIds.length; i++) {
-        if(chat.userIds[i] == this.currentUser._id){
-          move = true;
-          break;
-        }
-      }
-
-      if(move){
-        return this.goToChat(chat._id);
-      }else{
-        this.callMethod('updateChatUser', chat._id, (err, chatId) => {
-          if (err) return this.handleChatError(err);
-          this.goToChat(chatId);
-        });
-      }
-    } 
-    this.callMethod('newTaskChat', taskID, findtask.userId, findtask.title, (err, chatId) => {
-      if (err) return this.handleChatError(err);
-      this.goToChat(chatId);
-    });
+  newgroupChat(taskId) {
+    this.$state.go('tab.task', { taskId });
   }
 
   goToChat(chatId) {

@@ -6,12 +6,14 @@ import 'angular-sanitize';
 import 'angular-ui-router';
 import 'ionic-scripts';
 import 'angular-bootstrap-datetimepicker';
+import 'ng-tags-input';
 import Angular from 'angular';
 import Loader from 'angular-ecmascript/module-loader'
 import { Meteor } from 'meteor/meteor';
 
 import ChatsCtrl from '../controllers/chats.controller';
 import TasksCtrl from '../controllers/tasks.controller';
+import TaskCtrl from '../controllers/task.controller';
 import ChatCtrl from '../controllers/chat.controller';
 import DiaryCtrl from '../controllers/diary.controller';
 import StressLevelCtrl from '../controllers/stresslevel.controller';
@@ -44,6 +46,7 @@ Angular.module(App, [
 new Loader(App)
 	.load(ChatsCtrl)
 	.load(TasksCtrl)
+	.load(TaskCtrl)
 	.load(ProfileCtrl)
 	.load(ChatCtrl)
 	.load(DiaryCtrl)

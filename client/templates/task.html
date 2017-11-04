@@ -1,0 +1,22 @@
+<ion-view title="Task" hide-back-button="true">
+  <ion-nav-buttons side="right">
+    <button class="button button-clear">Setting</button>
+  </ion-nav-buttons>
+  <ion-nav-buttons side="left">
+   <a class="button icon-left ion-chevron-left button-clear" ng-href="#/tab/chats">Back</a>
+  </ion-nav-buttons>
+  <ion-content class="task">
+    <div class = "card">
+       <div class = "item text-center">
+          <strong>{{task.data.title}}</strong>
+          <hr>
+          On : {{task.data.scheduledAt  | amDateFormat: ' MM/DD/YYYY HH:mm'}}, At : {{task.data.location}}
+        
+          <p ng-if="!task.showchatbutton" style="margin-top:20px;">This event needs {{task.needed_people}} more people.</p>
+          <button ng-if="task.data.userId != currentUser._id && !task.showchatbutton && !hideconnectbutton" class="button button-block button-assertive button-outline" ng-click="task.connect()">Connect</button>
+          <button  ng-if="task.showchatbutton" class="button button-block button-balanced button-outline" ng-click="task.joinchat(task.currentchat._id)">Join Chat</button>
+       </div>
+    </div>
+  </ion-content>
+</ion-view>
+

@@ -38,6 +38,9 @@ class RoutesConfig extends Config {
           },
           stresslevels() {
             return Meteor.subscribe('stresslevels');
+          },
+          questions(){
+            return Meteor.subscribe('questions');
           }
         }
       })

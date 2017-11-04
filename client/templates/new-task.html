@@ -1,38 +1,47 @@
 <ion-modal-view ng-controller="NewTaskCtrl as task">
   <ion-header-bar>
-    <h1 class="title">So, what's the plan ?</h1>
+    <h1 class="title">Make something happen !!</h1>
     <div class="buttons">
       <button class="button button-clear button-positive" ng-click="task.hideNewTaskModal()">Close</button>
     </div>
   </ion-header-bar>
  
   <ion-content>
-    <ion-list>
-      <ion-radio ng-model="task.newTask" ng-value="'Having Drinks'">Having Drinks</ion-radio>
-      <ion-radio ng-model="task.newTask" ng-value="'Going for Movie'">Going for Movie</ion-radio>
-      <ion-radio ng-model="task.newTask" ng-value="'Brainstorming'">Brainstorming</ion-radio>
-      <ion-radio ng-model="task.newTask" ng-value="'Going for a hike'">Let's go on a hike</ion-radio>
-    </ion-list>
-
-    <div ng-if="task.newTask">
-      <ion-item style="text-align:center;">
-        <ion-label>Select Date and Time</ion-label>
+    <ion-item>
+      <ion-label><b>I want to connect with people want to...</b></ion-label>
+    </ion-item>
+      <label class="item item-input">
+        <input type="text" ng-model="task.newTask" placeholder=" Describe Activity">
+      </label>
+      <label class="item item-input">
+        <div class="input-label">
+          On
+        </div>
         <input type="datetime-local" ng-model="task.newDateTime">
-      </ion-item>
+      </label>
+      <label class="item item-input">
+        <div class="input-label">
+          At
+        </div>
+        <input type="text" ng-model="task.location" placeholder="location">
+      </label>
+      <label class="item item-input">
+        <div class="input-label">
+         Minimum people to activate
+        </div>
+        <input type="text" ng-model="task.min_people">
+      </label>
+      <label class="item item-input">
+        <div class="input-label">
+          Maximum number to fill
+        </div>
+        <input type="text" ng-model="task.max_people">
+      </label>
 
-      <!--<label>Date</label>
-      Selected Date: 2017-10-10 10:50 AM
-      <div class="dropdown">
-          <a  class="dropdown-toggle" id="dropdown1" role="button" data-toggle="dropdown" data-target="#" href="#">Click here to show calendar</a>
-          <ul class="dropdown-menu" role="menu">
-              <datetimepicker data-ng-model="data.dateDropDownLink" data-datetimepicker-config="{ dropdownSelector: '#dropdown1' }"/>
-          </ul>
-      </div>-->
-    </div>
 
 
-    <div class="list" ng-if="task.newDateTime">
-      <button ng-click="task.addTask(task.newTask, task.newDateTime)" class="button start button-positive">
+    <div class="list" ng-if="task.newDateTime" style="margin-top:10px;">
+      <button ng-click="task.addTask(task.newTask, task.newDateTime, task.location, task.min_people, task.max_people)" class="button start button-assertive">
         Create
       </button>
 

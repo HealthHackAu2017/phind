@@ -18,7 +18,7 @@
 
               </div>
               <div class="item range range-positive" ng-if="stresslevels.questions[0].input_method == 0">
-                <i class="icon ion-heart" ng-init="stresslevels.answer.value = 50" ng-class="{red: stresslevels.answer.value < 30, black: stresslevels.answer.value >= 30}"></i>
+                <i class="icon ion-heart" ng-init="stresslevels.answer.value = 50" ng-class="{'green': stresslevels.answer.value < 30, 'black': stresslevels.answer.value >= 30}"></i>
                   <input type="range" name="volume" min="0" max="100" on-tap="onTap($event,stresslevels.answer.value)" on-drag="onTap($event,stresslevels.answer.value)" ng-model="stresslevels.answer.value">
                 <i class="icon ion-heart-broken" ng-class="{red: stresslevels.answer.value > 70, black: stresslevels.answer.value <= 70}"></i>
               </div>
@@ -49,7 +49,7 @@
                 <textarea placeholder="Answer" ng-model="stresslevels.answer.text" rows="4"></textarea>
               </label>
               <div class="item padding">
-                 <button class="button button-block button-balanced" ng-click="stresslevels.submitAnswer(stresslevels.answer.value, stresslevels.answer.text,stresslevels.answer.binary, stresslevels.questions[0]._id,stresslevels.questions[0].input_method)">Submit</button>
+                 <button class="button button-block button-assertive button-outline" ng-click="stresslevels.submitAnswer(stresslevels.answer.value, stresslevels.answer.text,stresslevels.answer.binary, stresslevels.questions[0]._id,stresslevels.questions[0].input_method)">Submit</button>
               </div>
             </div>
          </ion-list>

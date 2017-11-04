@@ -13,6 +13,7 @@ import { Meteor } from 'meteor/meteor';
 
 import ChatsCtrl from '../controllers/chats.controller';
 import TasksCtrl from '../controllers/tasks.controller';
+import TaskCtrl from '../controllers/task.controller';
 import ChatCtrl from '../controllers/chat.controller';
 import DiaryCtrl from '../controllers/diary.controller';
 import StressLevelCtrl from '../controllers/stresslevel.controller';
@@ -23,7 +24,7 @@ import LoginCtrl from '../controllers/login.controller';
 import NewChatService from '../services/new-chat.service';
 import NewTaskService from '../services/new-task.service';
 import ChatPictureFilter from '../filters/chat-picture.filter';
-import InputDirective from '../directives/input.directive'
+import InputDirective from '../directives/input.directive';
 import NewChatCtrl from '../controllers/new-chat.controller';
 import NewTaskCtrl from '../controllers/new-task.controller';
 import CalendarFilter from '../filters/calendar.filter'
@@ -38,12 +39,14 @@ Angular.module(App, [
 	'angular-meteor.auth',
 	'angularMoment',
 	'ionic',
-	'ui.bootstrap.datetimepicker'
-	]);
+	'ui.bootstrap.datetimepicker',
+
+	])
 
 new Loader(App)
 	.load(ChatsCtrl)
 	.load(TasksCtrl)
+	.load(TaskCtrl)
 	.load(ProfileCtrl)
 	.load(ChatCtrl)
 	.load(DiaryCtrl)

@@ -1,5 +1,5 @@
 import { Meteor } from 'meteor/meteor';
-import { Chats, Messages, Tasks, Diaries, Stresslevels, Questions} from '../lib/collections';
+import { Chats, Messages, Tasks, Diaries, Stresslevels, Questions, Taskconnections} from '../lib/collections';
  
 Meteor.publish('users', function() {
   return Meteor.users.find({}, { fields: { profile: 1 } });
@@ -63,6 +63,19 @@ Meteor.publishComposite('stresslevels', function() {
   return {
     find() {
       return Stresslevels.find({userId : this.userId});
+    },
+    children: [
+      
+    ]
+  };
+});
+
+Meteor.publishComposite('tasks_connections', function() {
+  if (!this.userId) return;
+ 
+  return {
+    find() {
+      return Taskconnections.find({});
     },
     children: [
       

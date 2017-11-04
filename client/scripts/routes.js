@@ -12,6 +12,7 @@ import profileTemplateUrl from '../templates/profile.html';
 import tabsTemplateUrl from '../templates/tabs.html';
 import diaryTemplateUrl from '../templates/diary.html';
 import stressLevelTemplateUrl from '../templates/stresslevel';
+import taskTemplateUrl from '../templates/task';
  
 class RoutesConfig extends Config {
   constructor() {
@@ -87,6 +88,15 @@ class RoutesConfig extends Config {
           'tab-tasks': {
             templateUrl: tasksTemplateUrl,
             controller: 'TasksCtrl as tasks'
+          }
+        }
+    })
+    .state('tab.task', {
+        url: '/tasks/:taskId',
+        views: {
+          'tab-tasks': {
+            templateUrl: taskTemplateUrl,
+            controller: 'TaskCtrl as task'
           }
         }
     })

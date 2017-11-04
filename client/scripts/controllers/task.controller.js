@@ -30,19 +30,25 @@ export default class TaskCtrl extends Controller {
               }
           } 
       }
-
-      for (var key in this.connection) {
-          if (this.connection.hasOwnProperty(key)) {
-              if(key == "connectedIds"){
-                 this.connected_peoplelength = this.connection[key].length + 1
-                 this.connection_ids = this.connection[key]
-              }
-          } 
+      if (this.connection){
+        for (var key in this.connection) {
+            if (this.connection.hasOwnProperty(key)) {
+                if(key == "connectedIds"){
+                   this.connected_peoplelength = this.connection[key].length + 1
+                   this.connection_ids = this.connection[key]
+                }
+            } 
+        }
+      }else{
+        this.connected_peoplelength = 0
       }
 
       if(this.connection){
         if(this.connection_ids.length > 0){
           for (var i = 0; i < this.connection_ids.length; i++) {
+
+            console.log(this.connection_ids[i] == this.currentUser._id)
+
             if(this.connection_ids[i] == this.currentUser._id){
               if (this.connected_peoplelength >= this.min_people){
                 this.showchatbutton = true;
@@ -50,13 +56,20 @@ export default class TaskCtrl extends Controller {
                 this.needed_people = this.min_people - this.connected_peoplelength
                 this.showchatbutton = false;
               }
+              this.connected = true;
+              break;
             }else{
-              this.needed_people = this.min_people - this.connected_peoplelength
-              this.showchatbutton = false;
-              this.hideconnectbutton = true;
+              if (this.connected_peoplelength >= this.min_people){
+                this.showconnectbutton = true;
+              }else{
+                this.needed_people = this.min_people - this.connected_peoplelength
+                this.showchatbutton = false;
+              }
             }
           }
         }
+      }else{
+         this.needed_people = this.min_people - this.connected_peoplelength
       }
     });
   }

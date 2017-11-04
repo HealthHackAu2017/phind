@@ -12,9 +12,11 @@
           <hr>
           On : {{task.data.scheduledAt  | amDateFormat: ' MM/DD/YYYY HH:mm'}}, At : {{task.data.location}}
         
-          <p ng-if="!task.showchatbutton" style="margin-top:20px;">This event needs {{task.needed_people}} more people.</p>
-          <button ng-if="task.data.userId != currentUser._id && !task.showchatbutton && !hideconnectbutton" class="button button-block button-assertive button-outline" ng-click="task.connect()">Connect</button>
+          <p ng-if="!task.showchatbutton && task.needed_people" style="margin-top:20px;">This event needs {{task.needed_people}} more people.</p>
+
+          <button ng-if="task.data.userId != currentUser._id && !task.showchatbutton && !task.connected" class="button button-block button-assertive button-outline" ng-click="task.connect()">Connect</button>
           <button  ng-if="task.showchatbutton" class="button button-block button-balanced button-outline" ng-click="task.joinchat(task.currentchat._id)">Join Chat</button>
+          <button  ng-if="task.currentchat && task.data.userId == currentUser._id" class="button button-block button-balanced button-outline" ng-click="task.joinchat(task.currentchat._id)">Join Chat</button>
        </div>
     </div>
   </ion-content>

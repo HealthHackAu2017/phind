@@ -2,9 +2,12 @@
   <ion-nav-buttons side="right">
     <button ng-click="profile.next()" ng-disabled="!profile.name || profile.name.length === 0" class="button button-clear button-positive">Save</button>
   </ion-nav-buttons>
+  <ion-nav-buttons side="left">
+   <button class="button button-clear" ng-click="profile.skip()" ng-disabled="!profile.name || profile.name.length === 0">Skip</button>
+  </ion-nav-buttons>
  
   <ion-content class="profile">
-    <a class="profile-picture positive" ng-click="profile.updatePicture()">
+    <!--<a class="profile-picture positive" ng-click="profile.updatePicture()">
       <div ng-if="profile.currentUser.profile.picture">
         <img ng-src="{{ profile.currentUser.profile.picture }}" alt="profile picture">
         edit
@@ -16,12 +19,16 @@
  
     <div class="instructions">
       Enter your name and add an optional profile picture
-    </div>
+    </div>-->
  
     <div class="list profile-name">
       <label class="item item-input">
+        <div class="input-label">
+          Name
+        </div>
         <input ng-model="profile.name" on-return="profile.updateName()" type="text" placeholder="Your name">
       </label>
+
       <label class="item item-input item-select">
         <div class="input-label">
           School
@@ -32,6 +39,7 @@
           <option>QUT</option>
         </select>
       </label>
+
       <label class="item item-input item-select">
         <div class="input-label">
           Class
@@ -42,7 +50,113 @@
           <option>Medicine</option>
         </select>
       </label>
-      <button ng-click="profile.skip()" ng-disabled="!profile.name || profile.name.length === 0" class="button button-clear button-stable button-block">Skip</button>
+
+      <label class="item item-input">
+        <div class="input-label">
+          Nickname
+        </div>
+        <input ng-model="profile.nickname" on-return="profile.updateNickName()" type="text" placeholder="Try combining your favourite colour + something you use: e.g. redbeaker, aquabrush">
+      </label>
+
+      <label class="item item-input">
+        <div class="input-label">
+          Where are you from?
+        </div>
+        <input ng-model="profile.country" on-return="profile.updateCountry()" type="text" placeholder="Your home country">
+      </label>
+
+      <label class="item item-input" ng-if="profile.country != 'Australia'">
+        <div class="input-label">
+          How long have you been in Australia?
+        </div>
+        <input ng-model="profile.years_spent" on-return="profile.updateYears()" type="text" placeholder="Years spent">
+      </label>
+
+       <label class="item item-input item-select">
+        <div class="input-label">
+          Where are you studying?
+        </div>
+        <select ng-model="profile.institute" ng-change="profile.updateInstitute()">
+          <option selected>UQ</option>
+        </select>
+      </label>
+
+      <label class="item item-checkbox">
+        <div class="input-label">
+          Area of study
+        </div>
+        <ul class="list">
+           <li class = "item item-checkbox" ng-repeat="(key, area) in profile.study_area track by $index">
+              {{area.text}}
+              <label class="checkbox">
+                 <input type="checkbox" ng-model="area.checked" ng-change="profile.studyarea()"/>
+              </label>
+           </li>
+        </ul>
+      </label>
+
+      <label class="item item-checkbox">
+        <div class="input-label">
+         Milestone Achieved
+        </div>
+        <ul class="list">
+           <li class = "item item-checkbox" ng-repeat="m in profile.milestone">
+              {{m.text}}
+              <label class="checkbox">
+                 <input type="checkbox" ng-model="m.checked" ng-change="profile.mstone_achived()"/>
+              </label>
+           </li>
+        </ul>
+      </label>
+
+      <label class="item item-input">
+        <div class="input-label">
+          Where do I see myself in 5 years?
+        </div>
+        <input ng-model="profile.goal" on-return="profile.updateGoal()" type="text" placeholder="">
+      </label>
+
+      <label class="item item-input" >
+        <div class="input-label">
+         Six Word Story
+        </div>
+        <input ng-model="profile.six_word" on-return="profile.updateSixWord()" type="text" placeholder="six word story">
+      </label>
+
+      <!--
+
+      <label class="item">
+        <div class="input-label">
+         <b>Get connected</b>
+        </div>
+      </label>
+
+
+
+      <label class="item item-input" >
+        <div class="input-label">
+          Skill share
+        </div>
+        <input ng-model="profile.years_spent" on-return="profile.updateYears()" type="text" placeholder="What are you good at? Insert skills and areas of expertise">
+      </label>
+
+      <label class="item item-input" >
+        <div class="input-label">
+         Six Word Story
+        </div>
+        <input ng-model="profile.years_spent" on-return="profile.updateYears()" type="text" placeholder="Years spent">
+      </label>
+
+      <label class="item item-input" >
+        <div class="input-label">
+        Speech skill
+        </div>
+        <!--<tags-input type="text" ng-model="profile.tags">
+        </tags-input>
+
+      </label>-->
+
+      
     </div>
   </ion-content>
 </ion-view>

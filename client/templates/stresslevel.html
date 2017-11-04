@@ -49,7 +49,7 @@
                 <textarea placeholder="Answer" ng-model="stresslevels.answer.text" rows="4"></textarea>
               </label>
               <div class="item padding">
-                 <button class="button button-block button-balanced" ng-click="stresslevels.submitAnswer(stresslevels.answer.value, stresslevels.answer.text, stresslevels.questions[0]._id)">Submit</button>
+                 <button class="button button-block button-balanced" ng-click="stresslevels.submitAnswer(stresslevels.answer.value, stresslevels.answer.text,stresslevels.answer.binary, stresslevels.questions[0]._id,stresslevels.questions[0].input_method)">Submit</button>
               </div>
             </div>
          </ion-list>

@@ -75,7 +75,37 @@ Meteor.publishComposite('questions', function() {
  
   return {
     find() {
-      return Questions.find({});
+      const answers = Stresslevels.find({userId : this.userId});
+      this.ids = []
+      answers.forEach((a) => {
+        this.ids.push(a.questionId)
+      });
+
+      const ques = Questions.find({});
+
+      var allques = true
+
+      ques.forEach((q) => {
+
+        var ques_remain = false
+
+        answers.forEach((a) => {
+          if (q._id == a.questionId){
+            ques_remain = true
+          }
+        });
+
+        if (ques_remain == false){
+          allques = false;
+        }
+
+      });
+
+      if (allques){
+        return Questions.find({});
+      }else{
+        return Questions.find({_id : {$nin : this.ids}});
+      }
     },
     children: [
       

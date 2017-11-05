@@ -1,4 +1,4 @@
-<ion-view title="{{ chat.data | chatName }}" hide-back-button="true">
+<ion-view title="{{ chat.data.name}}" hide-back-button="true">
   <ion-nav-buttons side="right">
     <button class="button button-clear">Setting</button>
   </ion-nav-buttons>
@@ -8,8 +8,8 @@
   <ion-content class="chat" delegate-handle="chatScroll">
     <div class="message-list">
       <div ng-repeat="message in chat.messages" class="message-wrapper">
-        <div class="message" ng-class="message.userId === $root.currentUser._id ? 'message-mine' : 'message-other'">
-          <span ng-if="chat.data.taskId && message.userId != $root.currentUser._id" class="message-username" style="padding:5px;">{{message | messageName}}</span>
+        <div class="message" ng-class="message.userId === chat.currentuser.Id ? 'message-mine' : 'message-other'">
+          <span ng-if="chat.data.taskId && message.userId != chat.currentuser.Id" class="message-username" style="padding:5px;">Riya</span>
           <ng-switch on="message.type">
             <div ng-switch-when="text" class="text" style="color:#5f4848;">{{ message.text }}</div>
             <div ng-switch-when="picture" class="picture">

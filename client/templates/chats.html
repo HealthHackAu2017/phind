@@ -8,8 +8,8 @@
                 class="item-chat item-remove-animate item-avatar item-icon-right"
                 type="item-text-wrap"
                 href="#/tab/chats/{{chat._id}}">
-        <img ng-src="{{ chat | chatPicture }}">
-        <h2>{{ chat | chatName }}</h2>
+        <img ng-src="/images/{{chat.pic}}.jpg">
+        <h2>{{ chat.name }}</h2>
         <ng-switch on="chat.lastMessage.type">
           <p ng-switch-when="text">{{ chat.lastMessage.text }}</p>
           <p ng-switch-when="picture">image</p>

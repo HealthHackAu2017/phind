@@ -3,24 +3,34 @@ import { _ } from 'meteor/underscore';
 import { Meteor } from 'meteor/meteor';
 import { MeteorCameraUI } from 'meteor/okland:camera-ui';
 import { Controller } from 'angular-ecmascript/module-helpers';
-import { Chats, Messages } from '../../../lib/collections';
  
 export default class ChatCtrl extends Controller {
   constructor() {
     super(...arguments);
- 	
+    
     this.chatId = this.$stateParams.chatId;
- 	this.isIOS = Ionic.Platform.isWebView() && Ionic.Platform.isIOS();
+ 	  this.isIOS = Ionic.Platform.isWebView() && Ionic.Platform.isIOS();
     this.isCordova = Meteor.isCordova;
 
     this.helpers({
    		messages() {
-        return Messages.find({ chatId: this.chatId });
+        var message = [{"text": "Hello", "type" : "text", "chatId": this.chatId, "userId" : "123", "timestamp" : new Date()},
+        {"text": "Hiiii", "type" : "text", "chatId": this.chatId, "userId" : "567", "timestamp" : new Date()}
+        ]
+        return message
       },
       data() {
-        return Chats.findOne(this.chatId);
+        chat  = {"taskId" : "abc", "_id" : "xyz", "userIds" : ["123", "567"], "name" : "Hiking"}
+        return chat
       }
     });
+
+    this.autorun(() => {
+      this.currentuser = {}
+      this.currentuser.Id = "123"
+    });
+
+
     this.autoScroll();
   }
   autoScroll() {
@@ -35,27 +45,18 @@ export default class ChatCtrl extends Controller {
   }
 
   sendPicture() {
-    MeteorCameraUI.getPicture({}, (err, data) => {
-      if (err) return this.handleError(err);
- 
-      this.callMethod('newMessage', {
-        picture: data,
-        type: 'picture',
-        chatId: this.chatId
-      });
-    });
   }
 
   sendMessage() {
-  	if (_.isEmpty(this.message)) return;
- 
-    this.callMethod('newMessage', {
+  	newMessage = {
       text: this.message,
       type: 'text',
-      chatId: this.chatId
-    });
+      chatId: this.chatId,
+      userId:"123",
+      timestamp : new Date()
+    }
  
-    delete this.message;
+    this.messages.push(newMessage)
   }
   inputUp () {
     if (this.isIOS) {
@@ -85,18 +86,7 @@ export default class ChatCtrl extends Controller {
     }, 300);
   }
   remove(chat) {
-    this.callMethod('removeChat', chat._id);
-  }
-
-  handleError(err) {
-    if (err.error == 'cancel') return;
-    this.$log.error('Profile save error ', err);
- 
-    this.$ionicPopup.alert({
-      title: err.reason || 'Save failed',
-      template: 'Please try again',
-      okType: 'button-positive button-clear'
-    });
+    //this.callMethod('removeChat', chat._id);
   }
 }
  

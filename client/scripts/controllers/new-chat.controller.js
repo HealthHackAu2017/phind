@@ -1,6 +1,5 @@
 import { Meteor } from 'meteor/meteor';
 import { Controller } from 'angular-ecmascript/module-helpers';
-import { Chats } from '../../../lib/collections';
  
 export default class NewChatCtrl extends Controller {
   constructor() {
@@ -10,24 +9,15 @@ export default class NewChatCtrl extends Controller {
     
     this.helpers({
       users() {
-        return Meteor.users.find({ _id: { $ne: this.currentUserId } });
+        users = [{"name" : "Riya", "_id" : "567"}, {"name" : "Omkar", "_id" : "789"}]
+        return users
       }
     });
   }
  
   newChat(userId) {
-    let chat = Chats.findOne({ userIds: { $all: [this.currentUserId, userId]}, taskId : {$exists : false}});
- 
-    if (chat) {
-      this.hideNewChatModal();
-      return this.goToChat(chat._id);
-    }
- 
-    this.callMethod('newChat', userId, (err, chatId) => {
-      this.hideNewChatModal();
-      if (err) return this.handleError(err);
-      this.goToChat(chatId);
-    });
+    chatId = "xyz"
+    this.$state.go('tab.chat', { chatId });
   }
  
   hideNewChatModal() {
@@ -35,17 +25,8 @@ export default class NewChatCtrl extends Controller {
   }
  
   goToChat(chatId) {
+    chatId = "xyz"
     this.$state.go('tab.chat', { chatId });
-  }
- 
-  handleError(err) {
-    this.$log.error('New chat creation error ', err);
- 
-    this.$ionicPopup.alert({
-      title: err.reason || 'New chat creation failed',
-      template: 'Please try again',
-      okType: 'button-positive button-clear'
-    });
   }
 }
  

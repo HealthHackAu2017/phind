@@ -2,14 +2,17 @@ import Moment from 'moment';
 
 import { Controller } from 'angular-ecmascript/module-helpers';
 
-import { Chats } from '../../../lib/collections';
 
 export default class ChatsCtrl extends Controller {
   constructor() {
     super(...arguments);
- 	this.helpers({
+ 	  this.helpers({
       data() {
-        return Chats.find({userIds: this.currentUser._id}); 
+        var chats = [{"taskId" : "abc", "_id" : "xyz", "userIds" : ["123", "567"], "name" : "Hiking", "lastMessage" : {"text" : "whats going on", "timestamp" : new Date()}},
+        {"_id" : "jkl", "userIds" : ["123", "567"], "name" : "Riya", "lastMessage" : {"text" : "hey", "timestamp" : new Date()}},
+        {"_id" : "rmn", "userIds" : ["123", "789"], "name" : "Omkar", "lastMessage" : {"text" : "hello", "timestamp" : new Date()}}
+        ]
+        return chats
       }
     });
   }
@@ -17,7 +20,7 @@ export default class ChatsCtrl extends Controller {
     this.NewChat.showModal();
   }
   remove(chat) {
-    this.callMethod('removeChat', chat._id);
+    //this.callMethod('removeChat', chat._id);
   }
 }
  

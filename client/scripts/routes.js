@@ -27,24 +27,6 @@ class RoutesConfig extends Config {
         url: '/tab',
         abstract: true,
         templateUrl: tabsTemplateUrl,
-        resolve: {
-          user: this.isAuthorized,
-          chats() {
-            return Meteor.subscribe('chats');
-          },
-          tasks() {
-            return Meteor.subscribe('tasks');
-          },
-          diaries() {
-            return Meteor.subscribe('diaries');
-          },
-          stresslevels() {
-            return Meteor.subscribe('stresslevels');
-          },
-          questions(){
-            return Meteor.subscribe('questions');
-          }
-        }
       })
       .state('tab.chats', {
         url: '/chats',
@@ -79,9 +61,6 @@ class RoutesConfig extends Config {
         url: '/profile',
         templateUrl: profileTemplateUrl,
         controller: 'ProfileCtrl as profile',
-        resolve: {
-          user: this.isAuthorized
-        }
  	  })
     .state('tab.tasks', {
         url: '/tasks',

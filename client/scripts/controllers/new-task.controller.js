@@ -10,9 +10,9 @@ export default class NewTaskCtrl extends Controller {
     this.newDateTime = new Date();
   }
  
-  addTask(text, date) {
+  addTask(text, date, location, min, max) {
 
-    this.callMethod('insertTask', text, date, (err, taskId) => {
+    this.callMethod('insertTask', text, date,location, min, max, (err, taskId) => {
       this.hideNewTaskModal();
       if (err) return this.handleError(err);
     });

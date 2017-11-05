@@ -10,15 +10,17 @@
             </div>-->
             <div class="list" style="background:#fff;padding:10px;">
               <div class="item text-center">
-               <b> {{stresslevels.questions[0].topic}}</b>
-    
+                  How do you feel ?
+              </div>
+              <div class="item text-center" style="font-size: 40px !important; padding: 23px;">
+                  😀&nbsp;😊&nbsp;😕&nbsp;😡
               </div>
               <div class="item item-text-wrap">
                 {{stresslevels.questions[0].structured_question}}
 
               </div>
               <div class="item range range-positive" ng-if="stresslevels.questions[0].input_method == 0">
-                <i class="icon ion-heart" ng-init="stresslevels.answer.value = 50" ng-class="{'green': stresslevels.answer.value < 30, 'black': stresslevels.answer.value >= 30}"></i>
+                <i class="icon ion-heart" ng-init="stresslevels.answer.value = 50" ng-class="{green: stresslevels.answer.value < 30, black: stresslevels.answer.value >= 30}"></i>
                   <input type="range" name="volume" min="0" max="100" on-tap="onTap($event,stresslevels.answer.value)" on-drag="onTap($event,stresslevels.answer.value)" ng-model="stresslevels.answer.value">
                 <i class="icon ion-heart-broken" ng-class="{red: stresslevels.answer.value > 70, black: stresslevels.answer.value <= 70}"></i>
               </div>
@@ -26,7 +28,7 @@
                 <span ng-if="stresslevels.answer.binary == undefined">No</span>
                  <span ng-if="stresslevels.answer.binary == true">Yes</span>
                  <span ng-if="stresslevels.answer.binary == false">No</span>
-                 <label class="toggle toggle-assertive">
+                 <label class="toggle toggle-stable">
                    <input type="checkbox" ng-init="stresslevels.answer.binary == false" ng-model="stresslevels.answer.binary">
                    <div class="track">
                      <div class="handle"></div>
@@ -37,7 +39,7 @@
                 stresslevels.questions[0].positive_end
               }}</div>
               <div class="item text-center" ng-if="stresslevels.answer.value >= 30 && stresslevels.answer.value <= 70 && stresslevels.questions[0].input_method == 0"">
-                Meh
+                Not too bad
               </div>
               <div class="item text-center" ng-if="stresslevels.answer.value > 70">{{
                 stresslevels.questions[0].negative_end

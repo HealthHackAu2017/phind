@@ -1,4 +1,4 @@
-<ion-view title="Profile">
+<ion-view title="Profile" hide-back-button="true">
   <ion-nav-buttons side="right">
     <button ng-click="profile.next()" ng-disabled="!profile.name || profile.name.length === 0" class="button button-clear button-assertive">Save</button>
   </ion-nav-buttons>
@@ -6,7 +6,7 @@
    <button class="button button-clear" ng-click="profile.skip()" ng-disabled="!profile.name || profile.name.length === 0">Skip</button>
   </ion-nav-buttons>
  
-  <ion-content class="profile">
+  <ion-content class="profile" >
     <!--<a class="profile-picture positive" ng-click="profile.updatePicture()">
       <div ng-if="profile.currentUser.profile.picture">
         <img ng-src="{{ profile.currentUser.profile.picture }}" alt="profile picture">
@@ -21,53 +21,24 @@
       Enter your name and add an optional profile picture
     </div>-->
  
-    <div class="list profile-name">
-      <label class="item item-input">
-        <div class="input-label">
-          Name
-        </div>
-        <input ng-model="profile.name" on-return="profile.updateName()" type="text" placeholder="Your name">
-      </label>
-
-      <label class="item item-input item-select">
-        <div class="input-label">
-          School
-        </div>
-        <select ng-model="profile.school"  ng-change="profile.updateSchool()">
-          <option>UQ</option>
-          <option selected>Griffith</option>
-          <option>QUT</option>
-        </select>
-      </label>
-
-      <label class="item item-input item-select">
-        <div class="input-label">
-          Class
-        </div>
-        <select ng-model="profile.division" ng-change="profile.updateDiv()">
-          <option>Psychology</option>
-          <option selected>Engineering</option>
-          <option>Medicine</option>
-        </select>
-      </label>
-
+    <div class="list" style="height: 1500px;">
       <label class="item item-input">
         <div class="input-label">
           Nickname
         </div>
-        <input ng-model="profile.nickname" on-return="profile.updateNickName()" type="text" placeholder="Try combining your favourite colour + something you use: e.g. redbeaker, aquabrush">
+        <input ng-model="profile.name" on-return="profile.updateName()" type="text" placeholder="Choose Something Funky !">
       </label>
 
       <label class="item item-input">
         <div class="input-label">
-          Where are you from?
+          Home Country
         </div>
         <input ng-model="profile.country" on-return="profile.updateCountry()" type="text" placeholder="Your home country">
       </label>
 
       <label class="item item-input" ng-if="profile.country != 'Australia'">
         <div class="input-label">
-          How long have you been in Australia?
+          How long have been <br>here in Australia ?
         </div>
         <input ng-model="profile.years_spent" on-return="profile.updateYears()" type="text" placeholder="Years spent">
       </label>
@@ -80,47 +51,35 @@
           <option selected>UQ</option>
         </select>
       </label>
-
-      <label class="item item-checkbox">
-        <div class="input-label">
-          Area of study
-        </div>
-        <ul class="list">
-           <li class = "item item-checkbox" ng-repeat="(key, area) in profile.study_area track by $index">
+      <button style="text-align: left;" class="button icon-right button-block  button-light" ng-class="{'ion-ios-arrow-right': !showStudyArea, 'ion-ios-arrow-down': showStudyArea}" ng-click="showStudyArea=!showStudyArea">
+            Area of study
+      </button>
+      <label class="item" style="padding: 0px !important;">
+        <div class="list" ng-show="showStudyArea">
+           <div class = "item item-checkbox" ng-repeat="(key, area) in profile.study_area track by $index">
               {{area.text}}
               <label class="checkbox">
                  <input type="checkbox" ng-model="area.checked" ng-change="profile.studyarea()"/>
               </label>
-           </li>
-        </ul>
+           </div>
+        </div>
+      </label>
+      <button style="text-align: left;" class="button icon-right button-block button-light" ng-class="{'ion-ios-arrow-right': !showMilestone, 'ion-ios-arrow-down': showMilestone}" ng-click="showMilestone=!showMilestone">
+           Milestones Achieved  
+      </button>
+      <label class="item" style="padding: 0px !important;">
+        <ion-list ng-show="showMilestone">
+          <ion-radio ng-repeat="m in profile.milestone"  ng-change="profile.mstone_achived()" ng-model="m.checked" ng-value="'{{m.text}}'">{{m.text}}</ion-radio>
+        </ion-list>
       </label>
 
-      <label class="item item-checkbox">
-        <div class="input-label">
-         Milestone Achieved
-        </div>
-        <ul class="list">
-           <li class = "item item-checkbox" ng-repeat="m in profile.milestone">
-              {{m.text}}
-              <label class="checkbox">
-                 <input type="checkbox" ng-model="m.checked" ng-change="profile.mstone_achived()"/>
-              </label>
-           </li>
-        </ul>
-      </label>
+        <label class="item item-input">
+        <textarea  ng-model="profile.goal" on-return="profile.updateGoal()" type="text" placeholder="Where do you see myself in 5 years?"></textarea>
+        </label>
 
-      <label class="item item-input">
-        <div class="input-label">
-          Where do I see myself in 5 years?
-        </div>
-        <input ng-model="profile.goal" on-return="profile.updateGoal()" type="text" placeholder="">
-      </label>
+        <label class="item item-input">
+        <textarea ng-model="profile.six_word" on-return="profile.updateSixWord()" type="text" placeholder="Your Six Word Story"></textarea>
 
-      <label class="item item-input" >
-        <div class="input-label">
-         Six Word Story
-        </div>
-        <input ng-model="profile.six_word" on-return="profile.updateSixWord()" type="text" placeholder="six word story">
       </label>
 
       <!--
@@ -151,7 +110,7 @@
         <div class="input-label">
         Speech skill
         </div>
-        <!--<tags-input type="text" ng-model="profile.tags">
+        <tags-input type="text" ng-model="profile.tags">
         </tags-input>
 
       </label>-->

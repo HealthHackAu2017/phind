@@ -39,7 +39,7 @@ export default class StressLevelCtrl extends Controller {
       });
     }
 
-    this.$state.go('tab.tasks');   
+    this.$state.go('tab.diary');   
   }
 }
  

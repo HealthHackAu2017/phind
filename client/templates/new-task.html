@@ -1,17 +1,18 @@
 <ion-modal-view ng-controller="NewTaskCtrl as task">
   <ion-header-bar>
-    <h1 class="title">Make something happen !!</h1>
+    <h1 class="title">Make it happen !!</h1>
     <div class="buttons">
       <button class="button button-clear button-positive" ng-click="task.hideNewTaskModal()">Close</button>
     </div>
   </ion-header-bar>
  
   <ion-content>
-    <ion-item>
-      <ion-label><b>I want to connect with people want to...</b></ion-label>
-    </ion-item>
+    <div class="list">
+    <div class="item item-text-wrap"  type="item-text-wrap">
+      I want to connect with people want to...
+    </div>
       <label class="item item-input">
-        <input type="text" ng-model="task.newTask" placeholder=" Describe Activity">
+        <textarea type="text" rows="5" ng-model="task.newTask" placeholder=" Describe Activity"></textarea>
       </label>
       <label class="item item-input">
         <div class="input-label">
@@ -23,7 +24,7 @@
         <div class="input-label">
           At
         </div>
-        <input type="text" ng-model="task.location" placeholder="location">
+        <input type="text" ng-model="task.location" placeholder="Location">
       </label>
       <label class="item item-input">
         <div class="input-label">
@@ -38,10 +39,10 @@
         <input type="text" ng-model="task.max_people">
       </label>
 
-
+      </div>
 
     <div class="list" ng-if="task.newDateTime" style="margin-top:10px;">
-      <button ng-click="task.addTask(task.newTask, task.newDateTime, task.location, task.min_people, task.max_people)" class="button start button-assertive">
+      <button ng-click="task.addTask(task.newTask, task.newDateTime, task.location, task.min_people, task.max_people)" class="button start button-assertive button-outline">
         Create
       </button>
 

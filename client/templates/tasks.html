@@ -9,30 +9,36 @@
     <div class="list card" style="margin: 0px;">
 
   <div class="item item-body">
-    <img class="full-image" src="http://content.stamen.com/files/quova_streamgraphs/Screen%20shot%202010-08-09%20at%209.54.51%20PM.png">
+    <img class="full-image" src="/Capture.PNG">
     <p class="text-center">
       <a href="#" class="subdued">Mind Map of PhD 2026</a>
     </p>
-    <button class="button start button-assertive"  ng-click="tasks.newTaskModal()" style=""><i class="icon ion-bonfire"></i>&nbsp;&nbsp;&nbsp;&nbsp;Connect</button>
+    <button class="button start button-assertive button-outline"  ng-click="tasks.newTaskModal()" style=""><i class="icon ion-bonfire"></i>&nbsp;&nbsp;&nbsp;&nbsp;Connect</button>
   </div>
 
 </div>
     
    
     <ion-list >
-      
+      <ion-item class="item-chat item-remove-animate item-text-wrap">
+        <h2><a>@hairylemon</a> has joined PhixD, say hi !</h2>
+        </ion-option-button>
+      </ion-item>
+      <ion-item class="item-chat item-remove-animate item-text-wrap">
+        <h2>It's <a>@sweetpotato</a>'s birthday ! Happy birthday !!!</h2>
+      </ion-item>
       <ion-item ng-if="!task.checked" ng-repeat="task in tasks.data | orderBy:'task.createdAt'"
                 class="item-chat item-remove-animate item-text-wrap item-icon-right"
                 href="" ng-click="tasks.newgroupChat(task._id)"
                 on-swipe-right="tasks.setChecked(task)"
                 >
-        <h2>{{task.title}}</h2>
+        <h2>Looking for interested people to {{task.title}}</h2>
         <i class="icon ion-chevron-right icon-accessory"></i>
         <span class="schedule-message-timestamp">{{task.scheduledAt  | amDateFormat: ' MM/DD/YYYY HH:mm'}}</span>
         <br>
         <span class="last-message-timestamp text-right">{{task.createdAt | calendar}}</span>
         
-        <ion-option-button class="button-assertive" ng-click="tasks.removeTask(task)">
+        <ion-option-button class="button-stable" ng-click="tasks.removeTask(task)">
           Ignore
         </ion-option-button>
       </ion-item>

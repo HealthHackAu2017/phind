@@ -13,6 +13,7 @@ import tabsTemplateUrl from '../templates/tabs.html';
 import diaryTemplateUrl from '../templates/diary.html';
 import stressLevelTemplateUrl from '../templates/stresslevel';
 import taskTemplateUrl from '../templates/task';
+import resourceTemplateUrl from '../templates/resources.html';
  
 class RoutesConfig extends Config {
   constructor() {
@@ -105,6 +106,15 @@ class RoutesConfig extends Config {
         views: {
           'tab-tasks': {
             templateUrl: diaryTemplateUrl,
+            controller: 'DiaryCtrl as diaries'
+          }
+        }
+    })
+    .state('tab.resources', {
+        url: '/resources',
+        views: {
+          'tab-resources': {
+            templateUrl: resourceTemplateUrl,
             controller: 'DiaryCtrl as diaries'
           }
         }

@@ -22,7 +22,7 @@
     </div>
   </ion-content>
   <ion-footer-bar keyboard-attach class="bar-stable footer-chat item-input-inset">
-    <button class="button button-clear button-icon button-assertive icon ion-ios-upload-outline"></button>
+    <button class="button button-clear button-icon button-stable icon ion-ios-upload-outline"></button>
  
     <label class="item-input-wrapper">
       <input ng-model="chat.message"
@@ -34,12 +34,12 @@
     </label>
  
     <span ng-if="chat.message.length > 0">
-      <button ng-click="chat.sendMessage()" class="button button-clear button-assertive">Send</button>
+      <button ng-click="chat.sendMessage()" class="button button-clear button-stable">Send</button>
     </span>
     <span ng-if="!chat.message || chat.message.length === 0">
-       <button ng-click="chat.sendPicture()" class="button button-clear button-icon button-assertive icon ion-ios-camera-outline"></button>
+       <button ng-click="chat.sendPicture()" class="button button-clear button-icon button-stable icon ion-ios-camera-outline"></button>
       <i class="buttons-seperator icon ion-android-more-vertical"></i>
-      <button class="button button-clear button-icon button-assertive icon ion-ios-mic-outline"></button>
+      <button class="button button-clear button-icon button-stable icon ion-ios-mic-outline"></button>
     </span>
   </ion-footer-bar>
 </ion-view>

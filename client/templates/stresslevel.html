@@ -28,7 +28,7 @@
                 <span ng-if="stresslevels.answer.binary == undefined">No</span>
                  <span ng-if="stresslevels.answer.binary == true">Yes</span>
                  <span ng-if="stresslevels.answer.binary == false">No</span>
-                 <label class="toggle toggle-assertive">
+                 <label class="toggle toggle-stable">
                    <input type="checkbox" ng-init="stresslevels.answer.binary == false" ng-model="stresslevels.answer.binary">
                    <div class="track">
                      <div class="handle"></div>
@@ -51,7 +51,7 @@
                 <textarea placeholder="Answer" ng-model="stresslevels.answer.text" rows="4"></textarea>
               </label>
               <div class="item padding">
-                 <button class="button button-block button-assertive button-outline" ng-click="stresslevels.submitAnswer(stresslevels.answer.value, stresslevels.answer.text, stresslevels.questions[0]._id)">Submit</button>
+                 <button class="button button-block button-assertive button-outline" ng-click="stresslevels.submitAnswer(stresslevels.answer.value, stresslevels.answer.text,stresslevels.answer.binary, stresslevels.questions[0]._id,stresslevels.questions[0].input_method)">Submit</button>
               </div>
             </div>
          </ion-list>

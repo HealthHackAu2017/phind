@@ -27,6 +27,13 @@ Meteor.startup(function(){
         name: 'Rashi'
       }
     });
+
+    Accounts.createUserWithPhone({
+      phone: '+972508765439',
+      profile: {
+        name: 'Rohini'
+      }
+    });
   }
   if (Questions.find().count()!=0){
 

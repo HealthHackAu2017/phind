@@ -1,10 +1,13 @@
-<ion-view title="Profile">
+<ion-view title="Profile" hide-back-button="true">
   <ion-nav-buttons side="right">
     <button ng-click="profile.next()" ng-disabled="!profile.name || profile.name.length === 0" class="button button-clear button-assertive">Save</button>
   </ion-nav-buttons>
+  <ion-nav-buttons side="left">
+   <button class="button button-clear" ng-click="profile.skip()" ng-disabled="!profile.name || profile.name.length === 0">Skip</button>
+  </ion-nav-buttons>
  
-  <ion-content class="profile">
-    <a class="profile-picture positive" ng-click="profile.updatePicture()">
+  <ion-content class="profile" >
+    <!--<a class="profile-picture positive" ng-click="profile.updatePicture()">
       <div ng-if="profile.currentUser.profile.picture">
         <img ng-src="{{ profile.currentUser.profile.picture }}" alt="profile picture">
         edit
@@ -16,33 +19,103 @@
  
     <div class="instructions">
       Enter your name and add an optional profile picture
-    </div>
+    </div>-->
  
-    <div class="list profile-name">
+    <div class="list" style="height: 1500px;">
       <label class="item item-input">
-        <input ng-model="profile.name" on-return="profile.updateName()" type="text" placeholder="Your name">
-      </label>
-      <label class="item item-input item-select">
         <div class="input-label">
-          School
+          Nickname
         </div>
-        <select ng-model="profile.school"  ng-change="profile.updateSchool()">
-          <option>UQ</option>
-          <option selected>Griffith</option>
-          <option>QUT</option>
+        <input ng-model="profile.name" on-return="profile.updateName()" type="text" placeholder="Choose Something Funky !">
+      </label>
+
+      <label class="item item-input">
+        <div class="input-label">
+          Home Country
+        </div>
+        <input ng-model="profile.country" on-return="profile.updateCountry()" type="text" placeholder="Your home country">
+      </label>
+
+      <label class="item item-input" ng-if="profile.country != 'Australia'">
+        <div class="input-label">
+          How long have been <br>here in Australia ?
+        </div>
+        <input ng-model="profile.years_spent" on-return="profile.updateYears()" type="text" placeholder="Years spent">
+      </label>
+
+       <label class="item item-input item-select">
+        <div class="input-label">
+          Where are you studying?
+        </div>
+        <select ng-model="profile.institute" ng-change="profile.updateInstitute()">
+          <option selected>UQ</option>
         </select>
       </label>
-      <label class="item item-input item-select">
-        <div class="input-label">
-          Class
+      <button style="text-align: left;" class="button icon-right button-block  button-light" ng-class="{'ion-ios-arrow-right': !showStudyArea, 'ion-ios-arrow-down': showStudyArea}" ng-click="showStudyArea=!showStudyArea">
+            Area of study
+      </button>
+      <label class="item" style="padding: 0px !important;">
+        <div class="list" ng-show="showStudyArea">
+           <div class = "item item-checkbox" ng-repeat="(key, area) in profile.study_area track by $index">
+              {{area.text}}
+              <label class="checkbox">
+                 <input type="checkbox" ng-model="area.checked" ng-change="profile.studyarea()"/>
+              </label>
+           </div>
         </div>
-        <select ng-model="profile.division" ng-change="profile.updateDiv()">
-          <option>Psychology</option>
-          <option selected>Engineering</option>
-          <option>Medicine</option>
-        </select>
       </label>
-      <button ng-click="profile.skip()" ng-disabled="!profile.name || profile.name.length === 0" class="button button-clear button-stable button-block">Skip</button>
+      <button style="text-align: left;" class="button icon-right button-block button-light" ng-class="{'ion-ios-arrow-right': !showMilestone, 'ion-ios-arrow-down': showMilestone}" ng-click="showMilestone=!showMilestone">
+           Milestones Achieved  
+      </button>
+      <label class="item" style="padding: 0px !important;">
+        <ion-list ng-show="showMilestone">
+          <ion-radio ng-repeat="m in profile.milestone"  ng-change="profile.mstone_achived()" ng-model="m.checked" ng-value="'{{m.text}}'">{{m.text}}</ion-radio>
+        </ion-list>
+      </label>
+
+        <label class="item item-input">
+        <textarea  ng-model="profile.goal" on-return="profile.updateGoal()" type="text" placeholder="Where do you see myself in 5 years?"></textarea>
+        </label>
+
+        <label class="item item-input">
+        <textarea ng-model="profile.six_word" on-return="profile.updateSixWord()" type="text" placeholder="Your Six Word Story"></textarea>
+
+      </label>
+
+      <!--
+
+      <label class="item">
+        <div class="input-label">
+         <b>Get connected</b>
+        </div>
+      </label>
+
+
+
+      <label class="item item-input" >
+        <div class="input-label">
+          Skill share
+        </div>
+        <input ng-model="profile.years_spent" on-return="profile.updateYears()" type="text" placeholder="What are you good at? Insert skills and areas of expertise">
+      </label>
+
+      <label class="item item-input" >
+        <div class="input-label">
+         Six Word Story
+        </div>
+        <input ng-model="profile.years_spent" on-return="profile.updateYears()" type="text" placeholder="Years spent">
+      </label>
+
+      <label class="item item-input" >
+        <div class="input-label">
+        Speech skill
+        </div>
+        <tags-input type="text" ng-model="profile.tags">
+        </tags-input>
+
+      </label>-->
+
+      
     </div>
   </ion-content>
 </ion-view>
